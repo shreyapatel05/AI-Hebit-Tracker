@@ -1,0 +1,21 @@
+{
+  "name": "ai-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend/ai-habit-tracker-ui-boilerplate-code && npm run dev",
+    "backend": "cd backend && node server.js",
+    "dev": "concurrently -n \"Frontend,backend\" -c \"blue,green\" \"npm run frontend\" \"npm run backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "concurrently": "^9.2.1",
+    "mongoose": "^9.6.2"
+  }
+}
