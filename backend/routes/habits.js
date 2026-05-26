@@ -19,7 +19,7 @@ router.route("/")
 
 router.route("/:id")
   .put(updateHabit)
-  .delete(deleteHabit);
+  .delete(deleteHabit)
 
 router.put("/:id/archive", archiveHabit);
 

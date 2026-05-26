@@ -1,7 +1,5 @@
-# TODO
+TODO
 
-- [x] Fix syntax error in backend/controllers/authController.js (missing parenthesis in jwt.sign block) and verify exported controller functions match routes.
-- [x] Ensure route handler names are consistent: routes/auth.js expects updateProfile but controller exports updateMe.
-- [x] Run backend (`node backend/server.js` from backend folder or via npm script) and confirm server starts.
-- [ ] Re-run `npm run dev` to ensure both frontend and backend run together.
+- [ ] Update backend CORS CLIENT_URL to match the actual frontend Vite port (currently backend has http://localhost:5173, frontend is listening on 5175).
+- [ ] Restart backend and confirm frontend API calls no longer fail with CORS/network errors.
 
