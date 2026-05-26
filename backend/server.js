@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 
 import { connectDB } from "./config/db.js";
@@ -76,6 +76,22 @@ app.use("/api/auth", authRoutes);
 app.use("/api/habits", habitRoutes);
 app.use("/api/logs", logRoutes);
 app.use("/api/ai", aiRoutes);
+
+// Serve frontend static files if they exist (for unified hosting e.g., Render/Heroku)
+const __dirname = path.resolve();
+const frontendBuildPath = path.join(__dirname, "../frontend/ai-habit-tracker-ui-boilerplate-code/dist");
+
+if (existsSync(frontendBuildPath)) {
+  app.use(express.static(frontendBuildPath));
+  
+  // Wildcard handler for SPA routing - must be registered AFTER API routes but BEFORE error handlers
+  app.get("*", (req, res, next) => {
+    if (req.method === "GET" && !req.path.startsWith("/api/")) {
+      return res.sendFile(path.join(frontendBuildPath, "index.html"));
+    }
+    return next();
+  });
+}
 
 // Error handling middleware
 app.use(notFound);
